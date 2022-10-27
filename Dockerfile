@@ -6,6 +6,12 @@ EXPOSE 80
 
 RUN mkdir -p "/data/reports/"
 
+RUN apt-get update && apt-get install -y --allow-unauthenticated\
+    libc6-dev \
+    libgdiplus \
+    libx11-dev \
+	&& rm -rf /var/lib/apt/lists/*
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["TelerikDocker.csproj", "."]
