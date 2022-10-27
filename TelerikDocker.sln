@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikDocker", "TelerikDocker.csproj", "{2F755218-125B-4E99-AC7A-0E3F2D27A6C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelerikDocker", "TelerikDocker.csproj", "{2F755218-125B-4E99-AC7A-0E3F2D27A6C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reporting", "..\reporting\Reporting\Reporting.csproj", "{61856858-D27D-45E5-85BE-B47CA34E20D6}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{78199012-2D09-470D-B07D-ACA5D4017C19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{2F755218-125B-4E99-AC7A-0E3F2D27A6C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F755218-125B-4E99-AC7A-0E3F2D27A6C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F755218-125B-4E99-AC7A-0E3F2D27A6C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61856858-D27D-45E5-85BE-B47CA34E20D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61856858-D27D-45E5-85BE-B47CA34E20D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61856858-D27D-45E5-85BE-B47CA34E20D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61856858-D27D-45E5-85BE-B47CA34E20D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78199012-2D09-470D-B07D-ACA5D4017C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78199012-2D09-470D-B07D-ACA5D4017C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78199012-2D09-470D-B07D-ACA5D4017C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78199012-2D09-470D-B07D-ACA5D4017C19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

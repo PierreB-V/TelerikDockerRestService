@@ -1,36 +1,32 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Telerik.Reporting.Services;
 using Telerik.Reporting.Cache.File;
+using System.Configuration;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers()
-    .AddNewtonsoftJson();
 
 builder.Services.AddCors(c =>
 {
     c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 });
 
-string reportsPath = builder.Configuration["Reports:Path"];
-builder.Services.TryAddSingleton<IReportServiceConfiguration>(sp =>
-    new ReportServiceConfiguration
-    {
-        // The default ReportingEngineConfiguration will be initialized from appsettings.json or appsettings.{EnvironmentName}.json:
-        ReportingEngineConfiguration = sp.GetService<IConfiguration>(),
-
+var reportingAssembly = Assembly.Load("Reporting");
+if (null != reportingAssembly)
+{
+    builder.Services.AddControllers()
+        .AddApplicationPart(reportingAssembly)
+        .AddNewtonsoftJson();
         
-        // In case the ReportingEngineConfiguration needs to be loaded from a specific configuration file, use the approach below:
-        //ReportingEngineConfiguration = ResolveSpecificReportingConfiguration(sp.GetService<IWebHostEnvironment>()),
-        HostAppId = "Net6RestServiceWithCors",
-        Storage = new FileStorage(),
-        ReportSourceResolver = new TypeReportSourceResolver()
-            .AddFallbackResolver(new UriReportSourceResolver(reportsPath))
-
-
-    }); ; ;
+    builder.Services.AddReportingService(builder.Configuration);
+}
+else
+{
+    builder.Services.AddControllers();
+}
 
 var app = builder.Build();
 
@@ -38,9 +34,9 @@ var app = builder.Build();
 app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 
-app.UseAuthorization();
 
 app.UseRouting();
+app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();

@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  telerikdocker:
+    image: ${DOCKER_REGISTRY-}telerikdocker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8082:80"
+    volumes:
+      #- /data/explore/userFiles:/data/explore/userFiles
+      - C:\Temp\explore\reports:/data/reports
